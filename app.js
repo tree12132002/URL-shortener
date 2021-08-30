@@ -1,4 +1,5 @@
 const express = require('express')
+const exphbs = require('express-handlebars')
 const app = express()
 
 // mongoose
@@ -12,9 +13,12 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}))
+app.set('view engine', 'hbs')
 
+// routes setting
 app.get('/', (req, res) => {
-  res.send('hello')
+  res.render('index')
 })
 
 app.listen(3000, () => {
