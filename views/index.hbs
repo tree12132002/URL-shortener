@@ -1,1 +1,27 @@
-<h2>hello!</h2>
+<div class="container mt-5">
+  <div class="card">
+    <div clas="card-body">
+      
+      <div class="mt-5">
+        <h2 class="card-title text-center">URL Shortener</h2>
+      </div>
+      <div class="mt-5 d-flex justify-content-center">
+        <span style="font-size: 10em; color: Dodgerblue;">
+          <i class="fas fa-link"></i>
+        </span>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <form action="/shortened" method="POST">
+          <div class="input-group flex-nowrap mb-3" style="width: auto;">
+            <input type="url" class="form-control form-control-lg" placeholder="input URL here" id="inputURL" name="inputURL" value="" required>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-outline-primary" type="subit">Shorten</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
