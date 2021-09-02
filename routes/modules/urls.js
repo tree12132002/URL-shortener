@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Url = require('../../models/url')
+const generateRandomURL = require('../../models/generateRandomURL')
 
 router.post('/', (req, res) => {
   const inputURL = req.body.inputURL
