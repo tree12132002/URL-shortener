@@ -5,6 +5,7 @@ const generateRandomURL = require('../../models/generateRandomURL')
 
 router.post('/', (req, res) => {
   const inputURL = req.body.inputURL
+  let hostURL = res.header.host
   let randomURL = ''
 
   return Url.find()
@@ -26,7 +27,11 @@ router.post('/', (req, res) => {
       }
     })
     .then(() => {
-      shortURL = `http://localhost:3000/${randomURL}`
+      if (hosturl === 'localhost:3000') {
+        shortURL = `http://${hostURL}/${randomURL}`
+      } else {
+        shortURL = `https://${hostURL}/${randomURL}`
+      }
       res.render('index', { inputURL, shortURL })
     })
     .catch(error => console.error(error))
