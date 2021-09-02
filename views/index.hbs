@@ -24,14 +24,32 @@
       </div>
 
       {{#if shortURL}}
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center mt-3">
         <div>
           <h3>Success! Please use this link:</h3>
-          <a style="font-size: 1.2em;" href="{{shortURL}}">{{shortURL}}</a>
+          <a style="font-size: 1.2em;" href="{{shortURL}}" id="shortURL">{{shortURL}}</a>
         </div>
-        
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary" type="submit" id="copy">Copy</button>
       </div>
       {{/if}}
     </div>
   </div>
 </div>
+
+<script>
+  const copy = document.querySelector('#copy')
+  const shortURL = document.querySelector('#shortURL')
+
+  copy.addEventListener('click', function copy(event) {
+    const range = document.createRange()
+    range.selectNode(shortURL)
+    const selection = window.getSelection()
+    selection.removeAllRanges()
+    selection.addRange(range)
+    document.execCommand('copy')
+    selection.removeAllRanges()
+    alert('Copied!')
+  })
+</script>
