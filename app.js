@@ -2,7 +2,6 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const Url = require('./models/url')
 const generateRandomURL = require('./models/generateRandomURL')
-const bodyParser = require('body-parser')
 const app = express()
 
 // mongoose
