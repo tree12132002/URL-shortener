@@ -5,7 +5,7 @@ const generateRandomURL = require('../../models/generateRandomURL')
 
 router.post('/', (req, res) => {
   const inputURL = req.body.inputURL
-  let hostURL = req.headers.host
+  let hostURL = req.protocol + '://' + req.headers.host
   let randomURL = ''
 
   return Url.find()
@@ -19,20 +19,17 @@ router.post('/', (req, res) => {
       } else {
         randomURL = generateRandomURL()
         // 若創建的資料已存在於資料庫中，則重新創建短網址
-        if (urls.some((randomURL) => url.outputURL === randomURL)) {
+        while (urls.some(url => url.outputURL === randomURL)) {
           randomURL = generateRandomURL()
         }
         const outputURL = randomURL
         return Url.create({ inputURL, outputURL })
       }
+
     })
     .then(() => {
-      if (hostURL === 'localhost:3000') {
-        shortURL = `http://${hostURL}/${randomURL}`
-      } else {
-        shortURL = `https://${hostURL}/${randomURL}`
-      }
-      res.render('index', { inputURL, shortURL })
+      let outputURL = `${hostURL}/${randomURL}`
+      res.render('index', { inputURL, outputURL })
     })
     .catch(error => console.error(error))
 })

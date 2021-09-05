@@ -1,13 +1,8 @@
 function generateRandomURL() {
   const lowerCases = 'abcdefghijklmnopqrstuvwxyz'
-  const upperCases = lowerCases.toUpperCase()
-  const numbers = '1234567890'
+  const str = `${lowerCases}${lowerCases.toUpperCase()}1234567890`
 
-  let collection = []
-
-  collection = collection.concat(lowerCases.split(''))
-  collection = collection.concat(upperCases.split(''))
-  collection = collection.concat(numbers.split(''))
+  const collection = str.split('')
 
   let randomURL = ''
   for (let i = 0; i <= 4; i++) {
